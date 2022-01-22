@@ -1,0 +1,94 @@
+.Editor {
+  margin: 0px;
+  padding: 0px;
+}
+
+.Editor > .container {
+  height: 96.5vh;
+  width: 20vw;
+  background-color: white;
+  color: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.Editor > .left {
+  float: left;
+  margin-left: 20px;
+}
+
+.Editor > .right {
+  float: right;
+  margin-right: 20px;
+}
+
+.Editor > .workspace {
+  position: absolute;
+  width: 750px;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  transform: translate(-50%);
+  padding: 10px;
+  margin-top: 70px;
+}
+
+.MuiTextField-root {
+  margin-bottom: 10px;
+}
+
+.DragComponent {
+  background-color: rgba(138, 138, 138, 0.5);
+  color: rgb(27, 27, 71);
+  cursor: pointer;
+}
+
+.WebFrame {
+  box-shadow: 4px 4px 4px rgba(138, 133, 133, 0.692),
+    -4px -4px 4px rgba(216, 216, 216, 0.692);
+  padding: 20px 0px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 0px;
+}
+
+.AppFrame {
+  box-shadow: 4px 4px 4px rgba(138, 133, 133, 0.692),
+    -4px -4px 4px rgba(216, 216, 216, 0.692);
+  padding: 20px 0px 20px 20px;
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  margin: 0px;
+}
+
+.AppFrame > .Content {
+  margin-left: 20px;
+}
+
+.WebFrame > h1 {
+  margin: 0px;
+}
+
+.AppFrame {
+  zoom: 1;
+  -moz-transform: scale(1);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(1);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.8);
+  -webkit-transform-origin: 0 0;
+}
+
+.WebFrame {
+  zoom: 1;
+  -moz-transform: scale(1);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(1);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.8);
+  -webkit-transform-origin: 0 0;
+}
