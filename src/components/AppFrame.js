@@ -12,9 +12,8 @@ function AppFrame({ url, id, title, desc, linkText }) {
     }));
 
     return <>
-        <div className="AppFrame">
+        <div className="AppFrame" ref={drag}>
             <iframe
-                ref={drag}
                 src={url}
                 height='450px'
                 width='253.125px'

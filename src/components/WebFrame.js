@@ -12,11 +12,10 @@ function WebFrame({ url, id, title, desc, linkText }) {
     }));
 
     return (
-        <div className="WebFrame">
+        <div className="WebFrame" ref={drag}>
             <h1>{title}</h1>
             <p>{desc}</p>
             <iframe
-                ref={drag}
                 src={url}
                 height='253.125px'
                 width='450px'

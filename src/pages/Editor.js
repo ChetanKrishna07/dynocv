@@ -10,7 +10,10 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 import WebFrame from '../components/WebFrame'
 import AppFrame from '../components/AppFrame'
-import DragComponent from '../components/dragComponent'
+import HeadingFrame from '../components/HeadingFrame'
+import TextFrame from '../components/TextFrame'
+
+import DragComponent from '../components/DragComponent'
 
 import './Editor.css';
 import logo from '../images/logo.svg';
@@ -34,6 +37,21 @@ function Editor(props) {
         url: "",
         linkText: ""
     })
+
+    const [headingFrameData, setHeadingFrameData] = React.useState({
+        heading: ""
+    })
+
+    const [textFrameData, setTextFrameData] = React.useState({
+        text: "",
+        align: ""
+    })
+
+    // const [dummy, setDummy] = React.useState("")
+
+    React.useEffect(() => {
+        console.log(itemList);
+    }, [itemList])
 
     const [{ isOver }, drop] = useDrop(() => ({
         accept: "DragComponent",
@@ -70,6 +88,17 @@ function Editor(props) {
                 linkText: ""
             })
         }
+        else if (compType == "headingFrame") {
+            setAppFrameData({
+                heading: ""
+            })
+        }
+        else if (compType == "textFrame") {
+            setAppFrameData({
+                text: "",
+                align: ""
+            })
+        }
         setAnchor(null)
     }
 
@@ -94,10 +123,24 @@ function Editor(props) {
                 componentType: compType
             }
         }
+        else if (compType == "headingFrame") {
+            data = {
+                id: counter,
+                heading: headingFrameData.heading,
+                componentType: compType
+            }
+        }
+        else if (compType == "textFrame") {
+            data = {
+                id: counter,
+                text: textFrameData.text,
+                align: textFrameData.align,
+                componentType: compType
+            }
+        }
         updateList((itemList) => [...itemList, data])
-        console.log(itemList);
         incrementCounter((c) => c + 1)
-        closePopover()
+        closePopover();
     }
 
     const handleChange = (event) => {
@@ -116,6 +159,20 @@ function Editor(props) {
             temp[param] = event.target.value
             setAppFrameData(temp)
         }
+        else if (compType == "headingFrame") {
+            var temp = {
+                ...headingFrameData
+            }
+            temp[param] = event.target.value
+            setHeadingFrameData(temp)
+        }
+        else if (compType == "textFrame") {
+            var temp = {
+                ...textFrameData
+            }
+            temp[param] = event.target.value
+            setTextFrameData(temp)
+        }
 
     }
 
@@ -126,7 +183,13 @@ function Editor(props) {
             return <WebFrame id={data.id} url={data.url} key={data.id} title={data.title} desc={data.desc} linkText={data.linkText} />
         } else if (data.componentType == "appFrame") {
             console.log("Its a appFrame")
-            return <AppFrame id={data.id} url={data.url} key={data.id} title={data.title} desc={data.desc} linkText={data.linkText}/>
+            return <AppFrame id={data.id} url={data.url} key={data.id} title={data.title} desc={data.desc} linkText={data.linkText} />
+        } else if (data.componentType == "headingFrame") {
+            console.log("Its a headingFrame")
+            return <HeadingFrame id={data.id} key={data.id} heading={data.heading} />
+        } else if (data.componentType == "textFrame") {
+            console.log("Its a textFrame")
+            return <TextFrame id={data.id} key={data.id} text={data.text} align={data.align} />
         } else {
             return <></>
         }
@@ -141,7 +204,8 @@ function Editor(props) {
                     <TextField id="title" label="Title" variant="standard" value={webFrameData.title} onChange={handleChange} />
                     <TextField id="desc" label="Description" variant="standard" value={webFrameData.desc} onChange={handleChange} />
                     <TextField id="linkText" label="Link Text" variant="standard" value={webFrameData.linkText} onChange={handleChange} />
-                    <Button varient='contained' onClick={handleSubmit}>Submit</Button>
+                    {/* <input type="text" value={dummy} onChange={e => setDummy(e.target.value)}></input> */}
+                    <Button variant='contained' onClick={handleSubmit}>Submit</Button>
                 </>
             )
         } else if (compType == "appFrame") {
@@ -151,7 +215,22 @@ function Editor(props) {
                     <TextField id="title" label="Title" variant="standard" value={appFrameData.title} onChange={handleChange} />
                     <TextField id="desc" label="Description" variant="standard" value={appFrameData.desc} onChange={handleChange} />
                     <TextField id="linkText" label="Link Text" variant="standard" value={appFrameData.linkText} onChange={handleChange} />
-                    <Button varient='contained' onClick={handleSubmit}>Submit</Button>
+                    <Button variant='contained' onClick={handleSubmit}>Submit</Button>
+                </>
+            )
+        } else if (compType == "headingFrame") {
+            return (
+                <>
+                    <TextField id="heading" label="Heading" variant="standard" value={headingFrameData.heading} onChange={handleChange} />
+                    <Button variant='contained' onClick={handleSubmit}>Submit</Button>
+                </>
+            )
+        } else if (compType == "textFrame") {
+            return (
+                <>
+                    <TextField id="text" label="Text" variant="standard" value={textFrameData.text} onChange={handleChange} />
+                    <TextField id="align" label="Alignment" variant="standard" value={textFrameData.align} onChange={handleChange} />
+                    <Button variant='contained' onClick={handleSubmit}>Submit</Button>
                 </>
             )
         } else {
@@ -185,11 +264,14 @@ function Editor(props) {
                     src={logo}
                     width="70px"
                 />
-                <DragComponent id="main" componentType="webFrame" />
-                <DragComponent id="main" componentType="appFrame" />
+                <DragComponent key={0} id="main" componentType="webFrame" />
+                <DragComponent key={1} id="main" componentType="appFrame" />
+                <DragComponent key={2} id="main" componentType="headingFrame" />
+                <DragComponent key={3} id="main" componentType="textFrame" />
             </div>
             <div className='workspace' ref={drop}>
                 {itemList.length != 0 ? itemList.map(displayContent) : null}
+                {/* <TextFrame key={10} id={10} text={"This is me, Chetan Krishna"} align={"right"} /> */}
             </div>
 
             <div className='container right'></div>
