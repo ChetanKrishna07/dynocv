@@ -20,6 +20,7 @@ function DragComponent({ componentType, id }) {
 
             return <WebFrame id={0} title="Title" desc="Description" linkText="Link Text" />
 
+
         } else if (componentType === "appFrame") {
 
             return <AppFrame id={0} title="Title" desc="Description" linkText="Link Text" />
@@ -31,7 +32,8 @@ function DragComponent({ componentType, id }) {
     }
 
     return (
-        <div className='DragComponent' ref={drag}>
+
+        <div className={`${componentType} DragComponent`} ref={drag}>
             <h1>{componentType}</h1>
             <div>
                 {display(componentType)}

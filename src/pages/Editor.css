@@ -41,7 +41,18 @@
 
 .DragComponent {
   color: black;
-  height: 230px;
+}
+
+.webFrame{
+  height: 180px;
+}
+
+.appFrame {
+  height: 200px;
+}
+
+.headerFrame, .textFrame {
+  height: 50px;
 }
 
 .DragComponent > div > .WebFrame{
