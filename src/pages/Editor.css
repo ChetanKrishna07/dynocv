@@ -44,15 +44,15 @@
 }
 
 .webFrame{
-  height: 180px;
-}
-
-.appFrame {
   height: 200px;
 }
 
+.appFrame {
+  height: 230px;
+}
+
 .headerFrame, .textFrame {
-  height: 50px;
+  height: 10px;
 }
 
 .DragComponent > div > .WebFrame{
@@ -60,7 +60,7 @@
   -moz-transform-origin: 0 0;
   -o-transform: scale(1);
   -o-transform-origin: 0 0;
-  -webkit-transform: scale(0.3);
+  -webkit-transform: scale(0.38);
   -webkit-transform-origin: 0 0;
 }
 
@@ -69,7 +69,7 @@
   -moz-transform-origin: 0 0;
   -o-transform: scale(1);
   -o-transform-origin: 0 0;
-  -webkit-transform: scale(0.3);
+  -webkit-transform: scale(0.38);
   -webkit-transform-origin: 0 0;
 }
 
